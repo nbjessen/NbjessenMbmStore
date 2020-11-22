@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "beatles";
+}
+
+
+
+<p>
+    Title: @ViewBag.Turner.Title
+    <br /> Author: @ViewBag.Turner.Author
+    <br /> Price: @ViewBag.Turner.Price
+    <br /> Publisher: @ViewBag.Turner.Publisher (@ViewBag.Turner.Published)
+    <br /> ISBN: @ViewBag.Turner.ISBN
+
+</p>
+
+<p>
+    Title: @ViewBag.Beatles.Title
+    <br /> Price: @ViewBag.Beatles.Price
+    <br /> Label: @ViewBag.Beatles.Label (@ViewBag.Beatles.Released)
+    <br /> Artist: @ViewBag.Beatles.Artist
+    <br /> Playtime: @ViewBag.Beatles.GetPlayingTime()
+</p>
+
+<h2>Tracks</h2>
+<ol>
+    @foreach (var track in ViewBag.Beatles.Tracks)
+    {
+        <li>Title: @track.Title Composer: @track.Composer Length: @track.Length.Minutes:@track.Length.Seconds</li>
+
+
+    }
+</ol>
+
+<h2>Books</h2>
+@foreach (var book in ViewBag.Books)
+{
+    <p>@book.Title</p>
+}
+<h2>Music CD</h2>
+@foreach (var cd in ViewBag.MusicCDs)
+{
+    <p>@cd.Title</p>
+}
+<h2>Movies</h2>
+@foreach (var movie in ViewBag.Movies)
+{
+<p>
+   Title: @movie.Title
+    <br />Price: @movie.Price
+    <br />Image: <img src="/Images/@movie.ImageFileName">
+
+
+
+</p>
+}

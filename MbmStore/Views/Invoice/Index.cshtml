@@ -1,0 +1,47 @@
+﻿@using MbmStore.Models
+@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+
+
+<h2>Invoices</h2>
+
+
+
+<form method="post" asp-controller="Invoice" asp-action="index">
+    <div>
+    <select name="customer" id="customer" asp-items="@ViewData["Customers"] as List<SelectListItem>"></select>
+    <button type="submit">Show invoices</button>
+    </div>
+</form>
+
+<div style="width:33.33%; float:left">
+    <strong>Customer</strong>
+
+</div>
+<div style="width:33.33%; float:left">
+    <strong>Product</strong>
+
+</div>
+<div style="width:33.33%; float:left">
+    <strong>Price</strong>
+
+</div>
+@foreach (Invoice invoice in ViewBag.Invoices)
+{
+    <div style="width:33.33%; float:left">
+        <p>@invoice.Customer.Name</p>
+    </div>
+    <div style="width:33.33%; float:left">
+        @foreach (OrderItem orderitem in invoice.OrderItems)
+        {
+            <p>@orderitem.Product.Title</p>
+        }
+        <p><strong>Total:</strong></p>
+    </div>
+    <div style="width:33.33%; float:left">
+        @foreach (OrderItem orderitem in invoice.OrderItems)
+        {
+            <p>@orderitem.Product.Price</p>
+        }
+        <p><strong>@invoice.TotalPrice</strong></p>
+    </div>
+}

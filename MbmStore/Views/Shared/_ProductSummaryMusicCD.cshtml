@@ -1,0 +1,17 @@
+﻿@model MbmStore.Models.MusicCD
+@using MbmStore.Models;
+
+    <div class="row">
+        <div class="col-md-2">
+            <img src="/Images/@Model.ImageFileName" alt="@Model.Title" style="width:100px" />
+        </div>
+        <div class="col-md-4">
+            <strong>Title:</strong> @Model.Title<br />
+            <strong>Artist:</strong> @Model.Artist<br />
+            <strong>Price:</strong> @Model.Price<br />
+            <strong>Label:</strong> @Model.Label<br />
+            <strong>Released:</strong> @Model.Released<br />
+            <strong>Playingtime:</strong> @Model.GetPlayingTime()<br /><br />
+        </div>
+        @await Html.PartialAsync("_AddToCartButton", (Product) Model)
+    </div>

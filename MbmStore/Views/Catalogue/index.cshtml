@@ -1,0 +1,43 @@
+﻿@model ProductsListViewModel
+@{
+    ViewData["Title"] = "Products";
+}
+
+@if (Model.Products.OfType<Movie>().ToList().Count > 0)
+{
+    <div class="products" style="clear:both">
+        <h2>The Movies</h2>
+        @foreach (Movie movie in Model.Products.OfType<Movie>().ToList())
+        {
+            @await Html.PartialAsync("_ProductSummaryMovie", movie)
+            <br />
+        }
+    </div>
+}
+@if (Model.Products.OfType<Book>().ToList().Count > 0)
+{
+    <div class="products" style="clear:both">
+        <h2>The Books</h2>
+        @foreach (Book book in Model.Products.OfType<Book>().ToList())
+        {
+            @await Html.PartialAsync("_ProductSummaryBook", book)
+            <br />
+        }
+    </div>
+}
+@if (Model.Products.OfType<MusicCD>().ToList().Count > 0)
+{
+    <div class="products" style="clear:both">
+        <h2>The MusicCDs</h2>
+        @foreach (MusicCD musicCDs in Model.Products.OfType<MusicCD>().ToList())
+        {
+            @await Html.PartialAsync("_ProductSummaryMusicCD", musicCDs)
+            <br />
+        }
+    </div>
+}
+<div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-secondary"
+     page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
+     class="btn-group pull-right m-1">
+</div>
